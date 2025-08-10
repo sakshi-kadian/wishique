@@ -53,14 +53,14 @@ app.use(express.json());
 app.use("/api/products", productRoutes);
 
 // Production static files
-if (process.env.NODE_ENV === "production") {
-  const publicPath = path.join(__dirname, "public");
-  app.use(express.static(publicPath));
+// if (process.env.NODE_ENV === "production") {
+//   const publicPath = path.join(__dirname, "public");
+//   app.use(express.static(publicPath));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(publicPath, "index.html"));
-  });
-}
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(publicPath, "index.html"));
+//   });
+// }
 
 
 app.get("/", (req, res) => {
