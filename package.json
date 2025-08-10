@@ -1,0 +1,22 @@
+{
+  "name": "wishique",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
+    "server-dev": "cd server && npm run dev",
+    "client-dev": "cd client && npm start",
+    "install-client": "cd client && npm install",
+    "install-server": "cd server && npm install",
+    "install-all": "npm run install-client && npm run install-server",
+    "build": "cd client && npm install && npm run build && rm -rf ../server/public && mkdir -p ../server/public && cp -r build/* ../server/public/",
+    "start": "cd server && node server.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "lucide": "^0.539.0",
+    "multer": "^2.0.2",
+    "react": "^19.1.1"
+  }
+}
