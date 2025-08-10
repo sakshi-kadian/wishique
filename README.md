@@ -15,7 +15,7 @@ A curated multi-vendor boutique marketplace combining craftsmanship with modern 
 ---
 
 ## Tech Stack
-React, Tailwind CSS, Node.js, Express, MongoDB Atlas, Render
+React, Tailwind CSS, Node.js, Express, MongoDB Atlas
 
 ---
 
