@@ -34,14 +34,15 @@ export const upload = multer({ storage });
 // Serve uploads folder statically
 app.use("/uploads", express.static(uploadsPath));
 
-// CORS configuration for React frontend (dev mode)
+// CORS configuration for React frontend
 app.use(
   cors({
     origin: [
-      "http://localhost:3000",
-      "https://wishique.onrender.com" 
+      "http://localhost:3000",                
+      "https://wishique.onrender.com"         
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 );
 
