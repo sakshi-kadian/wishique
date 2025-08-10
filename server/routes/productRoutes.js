@@ -40,7 +40,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (err) {
-    console.error("❌ Error creating product:", err);
+    console.error("Error creating product:", err);
     res.status(500).json({ error: "Failed to upload product" });
   }
 });
@@ -73,7 +73,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
     await product.save();
     res.json(product);
   } catch (err) {
-    console.error("❌ Error updating product:", err);
+    console.error("Error updating product:", err);
     res.status(500).json({ error: "Failed to update product" });
   }
 });
@@ -98,7 +98,7 @@ router.delete("/:id", async (req, res) => {
     await product.deleteOne();
     res.json({ success: true, message: "Product deleted successfully" });
   } catch (err) {
-    console.error("❌ Error deleting product:", err);
+    console.error("Error deleting product:", err);
     res.status(500).json({ error: "Failed to delete product" });
   }
 });
@@ -110,7 +110,7 @@ router.get("/", async (req, res) => {
     const products = await Product.find();
     res.json(products);
   } catch (err) {
-    console.error("❌ Error fetching products:", err);
+    console.error("Error fetching products:", err);
     res.status(500).json({ error: "Failed to fetch products" });
   }
 });
