@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
 const categories = [
   "Jewelry",
   "Clay Art",
@@ -35,7 +37,7 @@ const UploadProduct = () => {
   }, [formData.preview]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${BACKEND_URL}/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Failed to fetch products", err));
@@ -59,12 +61,12 @@ const UploadProduct = () => {
     try {
       let response;
       if (editingId) {
-        response = await fetch(`http://localhost:5000/api/products/${editingId}`, {
+        response = await fetch(`${BACKEND_URL}/api/products/${editingId}`, {
           method: "PUT",
           body: formDataToSend,
         });
       } else {
-        response = await fetch("http://localhost:5000/api/products", {
+        response = await fetch(`${BACKEND_URL}/api/products`, {
           method: "POST",
           body: formDataToSend,
         });
@@ -92,7 +94,7 @@ const UploadProduct = () => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+      const response = await fetch(`${BACKEND_URL}/api/products/${id}`, {
         method: "DELETE",
       });
 
