@@ -37,7 +37,10 @@ app.use("/uploads", express.static(uploadsPath));
 // CORS configuration for React frontend (dev mode)
 app.use(
   cors({
-    origin: "http://localhost:3000", // frontend URL for dev
+    origin: [
+      "http://localhost:3000",
+      "https://wishique.onrender.com" // your deployed frontend URL
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
