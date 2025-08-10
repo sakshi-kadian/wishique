@@ -14,13 +14,22 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 
+// --- CORS must be loaded first ---
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "https://wishique.onrender.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 // Ensure uploads folder exists
 const uploadsPath = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadsPath)) {
   fs.mkdirSync(uploadsPath);
 }
 
-// Multer config (shared for all routes)
+// Multer config
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadsPath);
@@ -34,35 +43,13 @@ export const upload = multer({ storage });
 // Serve uploads folder statically
 app.use("/uploads", express.static(uploadsPath));
 
-// CORS configuration for React frontend
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",                
-      "https://wishique.onrender.com"         
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-  })
-);
-
-// Middleware to parse JSON bodies (not for file uploads)
+// Middleware to parse JSON
 app.use(express.json());
 
 // Routes
 app.use("/api/products", productRoutes);
 
-// Production static files
-// if (process.env.NODE_ENV === "production") {
-//   const publicPath = path.join(__dirname, "public");
-//   app.use(express.static(publicPath));
-
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(publicPath, "index.html"));
-//   });
-// }
-
-
+// Root test route
 app.get("/", (req, res) => {
   res.send("Wishique backend is running!");
 });
