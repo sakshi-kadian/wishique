@@ -39,7 +39,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://wishique.onrender.com" // your deployed frontend URL
+      "https://wishique.onrender.com" 
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
